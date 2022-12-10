@@ -40,12 +40,20 @@ class TicketControl extends React.Component {
     });
   };
 
+  handleDeletingSelectedTicket = () => {
+    const newMainTicketList = this.state.mainTicketList.filter((ticket) => ticket.id !== this.state.selected.id);
+    this.setState({
+      mainTicketList: newMainTicketList,
+      selected: null,
+    });
+  };
+
   render() {
     let currentlyDisplayed = null;
     let buttonText = null;
 
     if (this.state.selected !== null) {
-      currentlyDisplayed = <TicketDetail ticket={this.state.selected} />;
+      currentlyDisplayed = <TicketDetail ticket={this.state.selected} onDeleteClick={this.handleDeletingSelectedTicket} />;
       buttonText = "Return to Ticket List";
     } else if (this.state.formShowing) {
       currentlyDisplayed = <NewTicketForm onNewTicketCreation={this.handleAddNewTicket} />;
