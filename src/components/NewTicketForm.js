@@ -1,6 +1,7 @@
 import React from "react";
 import { v4 } from "uuid";
 import ReusableForm from "./ReusableForm";
+import PropTypes from "prop-types";
 
 function NewTicketForm(props) {
   function handleNewTicketFormSubmission(event) {
@@ -22,5 +23,9 @@ function NewTicketForm(props) {
     </React.Fragment>
   );
 }
+
+NewTicketForm.propTypes = {
+  onNewTicketCreation: PropTypes.func,
+};
 
 export default NewTicketForm;
